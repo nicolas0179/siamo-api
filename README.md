@@ -1,7 +1,7 @@
 # Launch server
 
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 # Acceptance tests

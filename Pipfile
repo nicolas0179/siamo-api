@@ -7,5 +7,9 @@ name = "pypi"
 fastapi = "*"
 uvicorn = "*"
 behave = "*"
+python-dotenv = "*"
+pythainlp = "*"
+pydantic-settings = "*"
+python-crfsuite = "*"
 
 [dev-packages]
