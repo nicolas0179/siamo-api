@@ -11,5 +11,6 @@ python-dotenv = "*"
 pythainlp = "*"
 pydantic-settings = "*"
 python-crfsuite = "*"
+pyhamcrest = "*"
 
 [dev-packages]

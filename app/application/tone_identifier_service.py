@@ -77,6 +77,13 @@ class ToneIdentifierService:
         Identify the tone of a syllable.
         """
 
+        # Check for particular cases
+        if syllable == "ก็":
+            return ToneResponse(
+                name=Tone.FALLING_TONE.name, symbol=Tone.FALLING_TONE.value
+            )
+
+        # Check for tone markers
         tone_marker = self.__get_tone_marker(syllable)
         if tone_marker == ToneMarker.HIGH_TONE_MARKER:
             return ToneResponse(
@@ -86,6 +93,8 @@ class ToneIdentifierService:
             return ToneResponse(
                 name=Tone.RISING_TONE.name, symbol=Tone.RISING_TONE.value
             )
+
+        # Check with initial consonant class
         initial_consonant_class = self.__get_initial_consonant_class_of_word(
             syllable
         )
@@ -117,6 +126,8 @@ class ToneIdentifierService:
             return ToneResponse(
                 name=Tone.FALLING_TONE.name, symbol=Tone.FALLING_TONE.value
             )
+
+        # Check with syllable type
         syllable_type = self.__is_dead_or_live_syllable(syllable)
         if (
             syllable_type == SyllableType.LIVE
@@ -148,6 +159,9 @@ class ToneIdentifierService:
         )
 
     def __get_tone_marker(self, syllable: str) -> ToneMarker:
+        """
+        Get the tone marker of a syllable.
+        """
         if "่" in syllable:
             return ToneMarker.LOW_TONE_MARKER
         if "้" in syllable:
@@ -159,6 +173,9 @@ class ToneIdentifierService:
         return ToneMarker.NO_TONE_MARKER
 
     def __get_consonant_class(self, consonant: str) -> ConsonantClass:
+        """
+        Get the consonant class of a consonant.
+        """
         if consonant in LOW_CLASS_CONSONANTS:
             return ConsonantClass.LOW_CLASS
         if consonant in MID_CLASS_CONSONANTS:
@@ -166,6 +183,9 @@ class ToneIdentifierService:
         return ConsonantClass.HIGH_CLASS
 
     def __get_initial_consonant(self, word: str) -> str:
+        """
+        Get the initial consonant of a word.
+        """
         for c in word:
             if c in ALL_CONSONANTS:
                 return c
@@ -173,10 +193,16 @@ class ToneIdentifierService:
     def __get_initial_consonant_class_of_word(
         self, word: str
     ) -> ConsonantClass:
+        """
+        Get the initial consonant class of a word.
+        """
         initial_consonant = self.__get_initial_consonant(word)
         return self.__get_consonant_class(initial_consonant)
 
     def __is_dead_or_live_syllable(self, syllable: str) -> SyllableType:
+        """
+        Check if a syllable is dead or live.
+        """
         if self.__has_final_consonant(
             syllable
         ) and self.__is_ending_with_stop_consonant(syllable):
@@ -188,12 +214,21 @@ class ToneIdentifierService:
         return SyllableType.LIVE
 
     def __has_final_consonant(self, syllable: str) -> bool:
+        """
+        Check if a syllable has a final consonant.
+        """
         return syllable[-1] in ALL_CONSONANTS
 
     def __is_ending_with_stop_consonant(self, syllable: str) -> bool:
+        """
+        Check if a syllable ends with a stop consonant.
+        """
         return syllable[-1] in STOP_CONSONANTS
 
     def __contains_short_vowel(self, syllable: str) -> bool:
+        """
+        Check if a syllable contains a short vowel.
+        """
         return any(c in SHORT_VOWELS for c in syllable) or all(
             c in ALL_CONSONANTS for c in syllable
         )
