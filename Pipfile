@@ -12,5 +12,10 @@ pythainlp = "*"
 pydantic-settings = "*"
 python-crfsuite = "*"
 pyhamcrest = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+httpx = "*"
+coverage = "*"
 
 [dev-packages]

@@ -22,11 +22,5 @@ class Settings(BaseSettings):
     PROJECT_NAME: str
     PROJECT_DESCRIPTION: str
 
-    class Config:
-        """Configuration for the settings class."""
-
-        env_file = ".env"
-        case_sensitive = True
-
 
 settings: Settings = Settings()
