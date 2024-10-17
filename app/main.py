@@ -1,4 +1,5 @@
 from fastapi import FastAPI, status
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from app.core.config import settings
 from app.router import router
@@ -11,6 +12,14 @@ app = FastAPI(
     version=settings.API_VERSION,
     description=settings.PROJECT_DESCRIPTION,
     docs_url=f"{root_path}/swagger",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.ALLOWED_HOSTS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
