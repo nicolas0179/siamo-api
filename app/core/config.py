@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     # are a JSON-formatted list of origins
     # For example: ["http://localhost:4200", "https://myfrontendapp.com"]
     BACKEND_CORS_ORIGINS: list[str] = []
-    ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1"]
+    ALLOWED_HOSTS: list[str] = ["localhost:5173", "127.0.0.1"]
 
     BASE_API_PATH: str
     API_VERSION: str
