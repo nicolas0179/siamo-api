@@ -1,4 +1,5 @@
 import pytest
+from contextlib import nullcontext as does_not_raise
 from app.application.tone_identifier_service import ToneIdentifierService
 from app.domain.value_objects.consonant import ConsonantClass
 from app.domain.value_objects.syllable import SyllableType
@@ -23,6 +24,12 @@ class TestToneIdentifierService:
             ValueError, match="Sentence contains non-Thai characters"
         ):
             self.tone_identifier_service.process_sentence("Hello, world!")
+
+    def test_process_thai_sentence_with_space(self):
+        try:
+            self.tone_identifier_service.process_sentence("เก็บวันนี้ พรุ่งนี้ก็เก่ง")
+        except Exception as exc:
+            assert False, f"'process_sentence' raised an exception {exc}"
 
     def test_process_sentence_with_long_sentence(self):
         with pytest.raises(

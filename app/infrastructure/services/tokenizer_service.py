@@ -10,4 +10,4 @@ class TokenizerService(ITokenizerService):
         return syllable_tokenize(text, keep_whitespace=False)
 
     def is_thai_sentence(self, text: str) -> bool:
-        return isthai(text)
+        return isthai(text, ignore_chars=" ")

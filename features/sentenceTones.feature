@@ -6,4 +6,4 @@ Feature: Tone determination of a sentence
     Examples:
       | sentence                 | segmentation                   | tones                                                                    |
       | ประเทศไทย                | ประ,เทศ,ไทย                    | LOW_TONE,FALLING_TONE,MID_TONE                                           |
-      | เก็บวันน้ีพรุ่งน้ีก็เก่ง | เก็บ,วัน,น้ี,พรุ่ง,น้ี,ก็,เก่ง | LOW_TONE,MID_TONE,HIGH_TONE,FALLING_TONE,HIGH_TONE,FALLING_TONE,LOW_TONE |
+      | เก็บวันนี้พรุ่งนี้ก็เก่ง | เก็บ,วัน,นี้,พรุ่ง,นี้,ก็,เก่ง | LOW_TONE,MID_TONE,HIGH_TONE,FALLING_TONE,HIGH_TONE,FALLING_TONE,LOW_TONE |
