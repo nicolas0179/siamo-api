@@ -1,5 +1,4 @@
 from fastapi.testclient import TestClient
-
 from app.domain.value_objects.tone import Tone
 
 from app.main import app, root_path

@@ -17,10 +17,10 @@ class Settings(BaseSettings):
     BACKEND_CORS_ORIGINS: list[str] = []
     ALLOWED_HOSTS: list[str] = []
 
-    BASE_API_PATH: str
-    API_VERSION: str
-    PROJECT_NAME: str
-    PROJECT_DESCRIPTION: str
+    BASE_API_PATH: str = "v1"
+    API_VERSION: str = "0.1.0"
+    PROJECT_NAME: str = "Thai Tone Identifier"
+    PROJECT_DESCRIPTION: str = "Thai Tone Identifier API"
 
 
 settings: Settings = Settings()
