@@ -1,3 +1,6 @@
+import sentry_sdk
+from sentry_sdk.integrations.starlette import StarletteIntegration
+from sentry_sdk.integrations.fastapi import FastApiIntegration
 from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -5,6 +8,23 @@ from app.core.config import settings
 from app.router import router
 
 root_path = f"/api/{settings.BASE_API_PATH}"
+
+sentry_sdk.init(
+    dsn=settings.SENTRY_DSN,
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for tracing.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+    environment=settings.ENVIRONMENT,
+    release=settings.API_VERSION,
+    integrations=[
+        StarletteIntegration(),
+        FastApiIntegration(),
+    ],
+)
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -16,7 +36,12 @@ app = FastAPI(
 
 # Define allowed origins based on the environment
 if settings.ENVIRONMENT == "PROD":
-    allowed_origins = ["185.22.110.31"]
+    allowed_origins = [
+        "185.22.110.31",
+        "127.0.0.1",
+        "www.siamo.app",
+        "siamo.app",
+    ]
 else:
     allowed_origins = ["*"]
 
