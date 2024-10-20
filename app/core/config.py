@@ -11,11 +11,11 @@ IS_ENV_FOUND = load_dotenv(
 class Settings(BaseSettings):
     """Represents the configuration settings for the application."""
 
-    # BACKEND_CORS_ORIGINS and ALLOWED_HOSTS
-    # are a JSON-formatted list of origins
+    # ALLOWED_HOSTS
+    # is a JSON-formatted list of origins
     # For example: ["http://localhost:4200", "https://myfrontendapp.com"]
-    BACKEND_CORS_ORIGINS: list[str] = []
     ALLOWED_HOSTS: list[str] = []
+    ENVIRONMENT: str = "PROD"
 
     BASE_API_PATH: str = "v1"
     API_VERSION: str = "0.1.0"

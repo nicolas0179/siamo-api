@@ -14,9 +14,15 @@ app = FastAPI(
     docs_url=f"{root_path}/swagger",
 )
 
+# Define allowed origins based on the environment
+if settings.ENVIRONMENT == "PROD":
+    allowed_origins = ["185.22.110.31"]
+else:
+    allowed_origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -52,4 +58,10 @@ app.include_router(router, prefix=root_path)
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        workers=4,
+        reload=settings.ENVIRONMENT == "DEV",
+    )
