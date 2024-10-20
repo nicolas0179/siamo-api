@@ -1,20 +1,18 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Build & Tests
+name: Pull Request
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
 permissions:
+  pull-requests: write
   contents: read
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -36,4 +34,12 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pipenv run pytest
+        pipenv run pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov-report xml:coverage.xml --cov=app app/tests/
+    - name: Pytest coverage comment
+      uses: MishaKav/pytest-coverage-comment@main
+      with:
+        pytest-xml-coverage-path: coverage.xml
+        junitxml-path: pytest.xml
+    - name: Run behave tests
+      run: |
+        pipenv run behave
