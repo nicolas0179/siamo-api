@@ -36,11 +36,11 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pipenv run pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=app app/tests/
+        pipenv run pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov-report xml:coverage.xml --cov=app app/tests/
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@main
       with:
-        pytest-coverage-path: coverage
+        pytest-xml-coverage-path: coverage.xml
         junitxml-path: pytest.xml
     - name: Run behave tests
       run: |

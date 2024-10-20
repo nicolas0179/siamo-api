@@ -37,4 +37,3 @@ dist/
 # Coverage
 .coverage
 coverage/
-pytest.xml
