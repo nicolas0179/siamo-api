@@ -39,8 +39,8 @@ if settings.ENVIRONMENT == "PROD":
     allowed_origins = [
         "185.22.110.31",
         "127.0.0.1",
-        "www.siamo.app",
-        "siamo.app",
+        "https://www.siamo.app",
+        "https://siamo.app",
     ]
 else:
     allowed_origins = ["*"]
