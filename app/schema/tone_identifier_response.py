@@ -15,6 +15,7 @@ class SyllableResponse(BaseModel):
     """Represents the response structure for a syllable."""
 
     syllable: str
+    romanization: str
     tone: ToneResponse
 
 

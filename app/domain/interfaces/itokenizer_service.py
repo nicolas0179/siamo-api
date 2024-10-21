@@ -10,3 +10,7 @@ class ITokenizerService(ABC):
     @abstractmethod
     def is_thai_sentence(self, text: str) -> bool:
         pass
+
+    @abstractmethod
+    def romanize_syllable(self, syllable: str) -> str:
+        pass

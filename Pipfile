@@ -8,7 +8,6 @@ fastapi = "*"
 uvicorn = "*"
 behave = "*"
 python-dotenv = "*"
-pythainlp = "*"
 pydantic-settings = "*"
 python-crfsuite = "*"
 pyhamcrest = "*"
@@ -18,5 +17,8 @@ pytest-mock = "*"
 httpx = "*"
 coverage = "*"
 sentry-sdk = {extras = ["fastapi"], version = "*"}
+torch = "*"
+numpy = "*"
+pythainlp = {extras = ["thai2rom"], version = "*"}
 
 [dev-packages]

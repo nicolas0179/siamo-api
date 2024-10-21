@@ -16,13 +16,21 @@ def lookupSentenceLexicalTones(context, sentence):
     )
     context.tones = [s.tone.name for s in sentenceTones.syllables]
     context.segmentation = [s.syllable for s in sentenceTones.syllables]
+    context.romanization = [s.romanization for s in sentenceTones.syllables]
 
 
-@then("I should expect the segmentation {segmentation} with the tones {tones}")
-def thenShouldExpectSegmentationAndTones(context, segmentation, tones):
+@then(
+    "I should expect the segmentation {segmentation} with the romanization {romanization} and the tones {tones}"
+)
+def thenShouldExpectSegmentationAndTones(
+    context, segmentation, romanization, tones
+):
     expected_segmentation = segmentation.split(",")
+    expected_romanization = romanization.split(",")
     expected_tones = tones.split(",")
     actual_segmentation = context.segmentation
+    actual_romanization = context.romanization
     actual_tones = context.tones
     assert_that(actual_segmentation, equal_to(expected_segmentation))
+    assert_that(actual_romanization, equal_to(expected_romanization))
     assert_that(actual_tones, equal_to(expected_tones))

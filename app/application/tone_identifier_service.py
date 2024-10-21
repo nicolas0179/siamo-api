@@ -47,10 +47,11 @@ class ToneIdentifierService:
         # Split the sentence into syllables
         syllables: List[str] = self.split_into_syllables(sentence)
 
-        # Identify the tone of each syllable
+        # Identify the tone and romanization of each syllable
         syllables_with_tone: List[SyllableResponse] = (
             self.__identify_tone_of_syllables(syllables)
         )
+
         return ToneIdentifierResponse(syllables=syllables_with_tone)
 
     def split_into_syllables(self, sentence: str) -> List[str]:
@@ -67,7 +68,11 @@ class ToneIdentifierService:
         """
         return [
             SyllableResponse(
-                syllable=syllable, tone=self.identify_tone(syllable)
+                syllable=syllable,
+                romanization=self.tokenizer_service.romanize_syllable(
+                    syllable
+                ),
+                tone=self.identify_tone(syllable),
             )
             for syllable in syllables
         ]
