@@ -17,5 +17,6 @@ pytest-cov = "*"
 pytest-mock = "*"
 httpx = "*"
 coverage = "*"
+sentry-sdk = {extras = ["fastapi"], version = "*"}
 
 [dev-packages]

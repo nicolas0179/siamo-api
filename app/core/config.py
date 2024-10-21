@@ -22,5 +22,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Thai Tone Identifier"
     PROJECT_DESCRIPTION: str = "Thai Tone Identifier API"
 
+    SENTRY_DSN: str = ""
+
 
 settings: Settings = Settings()
