@@ -20,5 +20,6 @@ sentry-sdk = {extras = ["fastapi"], version = "*"}
 torch = "*"
 numpy = "*"
 pythainlp = {extras = ["thai2rom"], version = "*"}
+pythaitts = "*"
 
 [dev-packages]
