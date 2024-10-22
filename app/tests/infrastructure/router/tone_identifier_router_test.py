@@ -13,15 +13,13 @@ client = TestClient(app)
 
 
 class TestToneIdentifierRouter:
-    def setup_method(self):
-        pass
-
     def test_tone_identifier(self, mocker):
         toneIdentifierResponse = ToneIdentifierResponse(
             text="สวัสดีชาวโลก",
             syllables=[
                 SyllableResponse(
-                    syllable="สวัสดี",
+                    syllable="สวัส",
+                    romanization="sawat",
                     tone=ToneResponse(
                         name=Tone.HIGH_TONE.name, symbol=Tone.HIGH_TONE.value
                     ),
